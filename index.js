@@ -1,5 +1,4 @@
 console.log('Pairs Detection');
-//console.log(process.argv);
 
 let input = process.argv[2];
 let rawValues = input.split(',');
@@ -15,6 +14,7 @@ let integers = rawValues.map( value => {
     
     if(isNaN(integer) || integer > 9 || integer < 0){
         console.error('ERROR: Each segement of the string must be an integer 1-9. No decimals allowed.')
+        process.exit();
     }
 
     return integer
@@ -22,21 +22,50 @@ let integers = rawValues.map( value => {
 
 let pairs = [];
 
-//Iterate over all of the values in the array
+//Generate pairs arrays
 integers.forEach((int, index) => {
     
     integers.forEach((secondInt, secondIndex) => {
-
         if(index != secondIndex){
-            //console.log(int, secondInt);
-            //return [int, secondInt];
             pairs.push([int, secondInt])
         } 
-
     })
 
 })
 
-console.log(`Input: ${integers}`);
-console.log(`Pairs: ${pairs.join(" | ")}`);
+let validPairs = pairs.reduce((pairs,pair) => {
+    
+    let sum = pair[0] + pair[1];
+    if(sum === 10){ pairs.push(pair.toString()); }
+    return pairs;
+
+},[])
+
+if(validPairs.length < 1){
+    console.log('No valid pairs present in input');
+    process.exit();
+}
+
+console.log(`Valid Pairs: ${validPairs.join(" | ")}`);
+
+var uniquePairs = Array.from(new Set(validPairs));
+
+console.log(`Unique Pairs: ${uniquePairs.join(" | ")}`);
+
+//Combo Pair Detection
+let noCombos = uniquePairs.reduce((combos, pair) => {
+
+    let reversePair = pair.split("").reverse().join("");
+
+    if(combos.indexOf(pair) === -1 && combos.indexOf(reversePair) === -1){
+        combos.push(pair);
+    }
+
+    return combos;
+
+},[]);
+
+console.log(`Unique Pairs No Reverse: ${noCombos.join(" | ")}`);
+
+
 
