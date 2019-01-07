@@ -1,3 +1,4 @@
+console.time('Total Execution Time:');
 console.log('Pairs Detection');
 
 let input = process.argv[2];
@@ -7,6 +8,8 @@ if(!input || rawValues.length < 1){
     console.error('ERROR: No input provided, please pass a string of integers between 1 and 9 surrounded by single quotes');
     process.exit();
 }
+
+console.log(`Raw input ${rawValues}`)
 
 let integers = rawValues.map( value => {
     
@@ -66,6 +69,7 @@ let noCombos = uniquePairs.reduce((combos, pair) => {
 },[]);
 
 console.log(`Unique Pairs No Reverse: ${noCombos.join(" | ")}`);
+console.timeEnd('Total Execution Time:');
 
 
 
