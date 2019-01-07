@@ -1,0 +1,21 @@
+{
+  "name": "pairs-detection",
+  "version": "1.0.0",
+  "description": "A command line program that detects pairs of numbers that sum to 10",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js '1, 1, 2, 4, 4, 5, 5, 5, 6, 7, 9'",
+    "input": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dirtybirdnj/pairs-detection.git"
+  },
+  "author": "Mat Gilbert <matgilbert@gmail.com> (http://www.matgilbert.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dirtybirdnj/pairs-detection/issues"
+  },
+  "homepage": "https://github.com/dirtybirdnj/pairs-detection#readme"
+}
